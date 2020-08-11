@@ -1,17 +1,21 @@
 package org.dxctraining.ui;
 
-import org.dxctraining.entities.*;
-import org.dxctraining.service.*;
-import java.util.*;
+import java.util.List;
 
-public class LibraryAppMain {
-	private IBookService bookService = new BookServiceImpl();
+import javax.annotation.PostConstruct;
 
-	public static void main(String args[]) {
-		LibraryAppMain demo = new LibraryAppMain();
-		demo.run();
-	}
+import org.dxctraining.entities.Author;
+import org.dxctraining.entities.Book;
+import org.dxctraining.service.IBookService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
+public class LibraryAppUi {
+	@Autowired
+	private IBookService bookService;
+
+	@PostConstruct
 	public void run() {
 		Author author1 = new Author("1", "prathyusha");
 		Author author2 = new Author("4", "priya");
@@ -28,21 +32,19 @@ public class LibraryAppMain {
 		System.out.println("is equal=" + isEquals);
 		System.out.println("is equal=" + isEquals1);
 	}
-	
+
 	public void displayAllBooks() {
-		List<Book> list=bookService.displayAllBooks();
+		List<Book> list = bookService.displayAllBooks();
 		System.out.println("the total books in the library:");
-		for(Book book:list) {
+		for (Book book : list) {
 			display(book);
 		}
 	}
+
 	public void display(Book book) {
-		//System.out.println("the total books in the library:");
-		 Author author=book.getAuthor();
-	        System.out.println("author id is::"+author.getId()+"The author is ::"+author.getName()+" Name of the book:: "+book.getName()+
-	                " cost is::"+book.getCost());
-	    }
+		// System.out.println("the total books in the library:");
+		Author author = book.getAuthor();
+		System.out.println("author id is::" + author.getId() + "The author is ::" + author.getName()
+				+ " Name of the book:: " + book.getName() + " cost is::" + book.getCost());
 	}
-
-
-
+}

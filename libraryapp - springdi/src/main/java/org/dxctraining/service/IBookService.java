@@ -1,5 +1,6 @@
 package org.dxctraining.service;
 import java.util.*;
+
 import org.dxctraining.entities.Book;
 
 public interface IBookService {
@@ -9,7 +10,7 @@ public interface IBookService {
 
 	void add(Book book);
 
-	Book updateCost(String id, double cost);
+	Book updateCost(String id,double cost);
 
 	void remove(String id);
 

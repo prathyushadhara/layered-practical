@@ -5,9 +5,12 @@ import java.util.List;
 import org.dxctraining.dao.*;
 import org.dxctraining.entities.Book;
 import org.dxctraining.exceptions.*;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+@Service
 public class BookServiceImpl implements IBookService {
-	private IBookDao dao = new BookDaoImpl();
+	@Autowired
+	private IBookDao dao;
 
 	public Book findById(String id) {
 		checkId(id);
